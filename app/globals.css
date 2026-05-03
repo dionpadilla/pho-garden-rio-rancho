@@ -1,0 +1,69 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --green: #0A6B3E;
+  --spring: #4ADE80;
+  --garden: #A8E6CF;
+  --rice: #F8F4ED;
+  --gold: #D4AF77;
+  --broth: #9C2A2A;
+  --ink: #1A1A1A;
+  color-scheme: light;
+}
+
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--rice);
+  color: var(--ink);
+  font-feature-settings: 'liga' 1, 'kern' 1;
+  overflow-x: hidden;
+}
+.dark body { background: #07170f; color: var(--rice); }
+::selection { background: var(--garden); color: var(--ink); }
+
+.garden-noise::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: .08;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.8'/%3E%3C/svg%3E");
+}
+
+.brush-title {
+  position: relative;
+  display: inline-block;
+}
+.brush-title::after {
+  content: '';
+  position: absolute;
+  left: 4%;
+  right: -3%;
+  bottom: .05em;
+  height: .22em;
+  background: linear-gradient(90deg, rgba(168,230,207,.65), rgba(212,175,119,.42));
+  border-radius: 999px;
+  z-index: -1;
+  transform: rotate(-1.5deg);
+}
+
+.glass {
+  background: rgba(248,244,237,.72);
+  backdrop-filter: blur(24px) saturate(140%);
+  border: 1px solid rgba(212,175,119,.28);
+}
+.dark .glass { background: rgba(7,23,15,.72); border-color: rgba(168,230,207,.18); }
+
+.leaf-float { animation: leafFloat 5.5s ease-in-out infinite; }
+@keyframes leafFloat { 0%,100%{ transform: translateY(0) rotate(-2deg);} 50%{ transform: translateY(-12px) rotate(2deg);} }
+
+.marquee { display: flex; width: max-content; animation: marquee 28s linear infinite; }
+@keyframes marquee { from { transform: translateX(0);} to { transform: translateX(-50%);} }
+
+.focus-ring { @apply focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-gold; }
+
+input, select, textarea { color: #1A1A1A; }
+.dark input, .dark select, .dark textarea { color: #F8F4ED; }
